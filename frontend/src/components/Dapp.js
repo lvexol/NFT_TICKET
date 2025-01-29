@@ -22,6 +22,9 @@ export const Dapp = () => {
     royaltyPercent: 0,
   });
 
+  // Simple user ID state - just for display
+  const [userId, setUserId] = useState('');
+
   // Tab state
   const [activeTab, setActiveTab] = useState('create');
 
@@ -59,7 +62,7 @@ export const Dapp = () => {
     }
   };
 
-  // Create new event
+  // Rest of your original code remains exactly the same...
   const createEvent = async (e) => {
     e.preventDefault();
     try {
@@ -92,7 +95,6 @@ export const Dapp = () => {
     }
   };
 
-  // Buy ticket
   const buyTicket = async (eventId) => {
     try {
       const eventIndex = state.events.findIndex(e => e.id === eventId);
@@ -130,7 +132,6 @@ export const Dapp = () => {
     }
   };
 
-  // Get user's tickets
   const getMyTickets = () => {
     return state.events.flatMap(event => 
       event.tickets.filter(ticket => 
@@ -154,6 +155,21 @@ export const Dapp = () => {
   if (!state.selectedAddress) {
     return (
       <div className="connect-wallet-container">
+        <input
+          type="text"
+          placeholder="Enter User ID"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          style={{
+            backgroundColor: 'black',
+            color: 'white',
+            padding: '10px',
+            marginBottom: '10px',
+            borderRadius: '4px',
+            border: '1px solid #333',
+            width: '200px'
+          }}
+        />
         <button className="connect-button" onClick={connectWallet}>
           Connect Wallet
         </button>
